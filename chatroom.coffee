@@ -1,8 +1,16 @@
 root = global ? window
+M = root.Meteor
 
-if root.Meteor.is_client
-    root.Template.hello.greeting = ->
-        "Welcome to FirstApp."
+Messages = new M.Collection("messages")
 
-    root.Template.hello.events = "click input": ->
-        console.log "You pressed the button"
+if M.is_client
+
+  root.Template.chatarea.message = ->
+    n = Messages.find({}).count() - 10
+    Messages.find({}, {skip: n }).map((m) -> m.message)
+
+  root.Template.chatarea.events = "click input": ->
+    console.log "You pressed the button"
+    message = $('#chatbox').val()
+    console.log "msg #{message}"
+    Messages.insert({'message' : message})
