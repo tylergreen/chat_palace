@@ -9,3 +9,5 @@ preserve-inputs
 coffeescript
 jquery
 underscore
+bootstrap
+d3
