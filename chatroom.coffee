@@ -5,13 +5,18 @@ Messages = new M.Collection("messages")
 
 if M.is_client
 
-  root.Template.chatarea.message = ->
+  root.Template.message_display.message_count = ->
+    Messages.find({}).count()
+
+  messages_to_show = 10
+
+  root.Template.message_display.message_list = ->
     n = Messages.find({}).count()
-    if n < 10
+    if n < messages_to_show
       n = 0
     else
-      n = n - 10
-    Messages.find({}, {skip: n }).map((m) -> m.message)
+      n = n - messages_to_show
+    Messages.find({}, {skip: n })
 
   root.Template.chatarea.events = "click input": ->
     console.log "You pressed the button"
