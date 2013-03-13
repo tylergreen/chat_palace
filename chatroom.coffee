@@ -20,7 +20,7 @@ if M.is_client
       n = n - messages_to_show
     Messages.find({}, {skip: n })
 
-  root.Template.chatarea.events = "click input": ->
+  root.Template.chatarea.events = "click input#send_button": ->
     console.log "You pressed the button"
     message = $('#chatbox').val()
     console.log "msg #{message}"
