@@ -5,7 +5,7 @@ Messages = new M.Collection("messages")
 
 if M.is_client
 
-  Accounts.ui.config({passwordSignupFields: 'USERNAME_AND_EMAIL' })
+
 
   root.Template.message_display.message_count = ->
     Messages.find({}).count()
@@ -23,5 +23,6 @@ if M.is_client
   root.Template.chatarea.events = "click input#send_button": ->
     console.log "You pressed the button"
     message = $('#chatbox').val()
+    $('#chatbox').val('')
     console.log "msg #{message}"
     Messages.insert({'message' : message, 'username': Meteor.user().username})
