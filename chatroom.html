@@ -28,7 +28,9 @@
   Message Count: {{message_count}}
   {{#each message_list}}
   <div class="row">
-	<div class="span4 ">{{ message }} </div>
+	<div class="span4 ">
+	  {{username }}: {{ message }}
+	</div>
   </div>
   {{/each}}
 </template>
