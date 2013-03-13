@@ -3,26 +3,22 @@
 </head>
 
 <body>
-  {{> chatarea }}
-
-</body>
-
-<template name="chatarea">
-  <div class="row">
-	<div class= "span2">   {{ loginButtons }}  </div>	
-  </div>
-
   <div class="row">
 	<div class= "span8"> <h1>Chatroom</h1> </div>
   </div>
 
-  {{>message_display }}
-  
-  <div class="row">
-	<div class="span4"> <input type="text" id="chatbox"/> </div>
-	<div class="span1"> <input type="button" id="send_button" value="send" /> </div>
+  <div class="row">   
+	<div class="span1">{{ loginButtons }}</div>
   </div>
-</template>
+
+  <div class="row">
+	<div class="span1"> <a href="chat">Chat</a></div>
+	<div class="span1"> <a href="stats">Stats</a></div>
+  </div>
+
+  {{renderPage}}
+
+</body>
 
 <template name="message_display">
   Message Count: {{message_count}}
@@ -33,4 +29,18 @@
 	</div>
   </div>
   {{/each}}
+
+  <div class="row">
+	<div class="span4"> <input type="text" id="chatbox"/> </div>
+	<div class="span1"> <input type="button" id="send_button" value="send" /> </div>
+  </div>
+
+</template>
+
+<template name="stats">
+STATS!!
+</template>
+
+<template name="not_found">
+404 page not found
 </template>

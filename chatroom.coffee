@@ -5,8 +5,6 @@ Messages = new M.Collection("messages")
 
 if M.is_client
 
-
-
   root.Template.message_display.message_count = ->
     Messages.find({}).count()
 
@@ -20,6 +18,7 @@ if M.is_client
       n = n - messages_to_show
     Messages.find({}, {skip: n })
 
+  # this is a so called "event map"
   root.Template.chatarea.events = "click input#send_button": ->
     console.log "You pressed the button"
     message = $('#chatbox').val()
