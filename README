@@ -1,5 +1,8 @@
 Chat Palace is a webapp designed to show off the power of Meteor.js and friends.
 
+* Requirements:
+First install meteor (see meteor.com) and meteorite (npm install -g meteorite)
+
 how to run:
 $ mrt run
 
