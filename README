@@ -1,0 +1,11 @@
+Chat Palace is a webapp designed to show off the power of Meteor.js and friends.
+
+how to run:
+$ mrt run
+
+how to test:
+$ mocha --compilers coffee:coffee-script tests
+
+how to deploy
+
+$ mrt deploy chat_palace.meteor.com
