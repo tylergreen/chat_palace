@@ -5,12 +5,12 @@ Messages = new M.Collection("messages")
 
 if M.is_client
 
-  root.Template.message_display.message_count = ->
+  root.Template.chat_console.message_count = ->
     Messages.find({}).count()
 
   messages_to_show = 10
 
-  root.Template.message_display.message_list = ->
+  root.Template.chat_console.message_list = ->
     n = Messages.find({}).count()
     if n < messages_to_show
       n = 0
@@ -19,7 +19,7 @@ if M.is_client
     Messages.find({}, {skip: n })
 
   # this is a so called "event map"
-  root.Template.chatarea.events = "click input#send_button": ->
+  root.Template.chat_console.events = "click input#send_button": ->
     console.log "You pressed the button"
     message = $('#chatbox').val()
     $('#chatbox').val('')
