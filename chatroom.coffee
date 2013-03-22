@@ -1,7 +1,7 @@
 root = global ? window
 M = root.Meteor
 
-Messages = new M.Collection("messages_old")
+Chatroom = new Chatroom('general')
 
 if M.is_client
 
@@ -21,17 +21,12 @@ if M.is_client
       .attr("height", (d) -> d * 10)
 
   root.Template.chat_console.message_count = ->
-    Messages.find({}).count()
+    Chatroom.message_count()
 
   messages_to_show = 10
 
   root.Template.chat_console.message_list = ->
-    n = Messages.find({}).count()
-    if n < messages_to_show
-      n = 0
-    else
-      n = n - messages_to_show
-    Messages.find({}, {skip: n })
+    Chatroom.latest_messages(10)
 
   # this is a so called "event map"
   root.Template.chat_console.events = "click input#send_button": ->
@@ -39,4 +34,4 @@ if M.is_client
     message = $('#chatbox').val()
     $('#chatbox').val('')
     console.log "msg #{message}"
-    Messages.insert({'message' : message, 'username': Meteor.user().username})
+    Chatroom.add_message(Meteor.user().username, message)

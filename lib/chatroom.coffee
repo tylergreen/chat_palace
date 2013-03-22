@@ -1,8 +1,20 @@
 class Chatroom
   constructor: (@name) ->
-    @Messages = new Meteor.Collection('messages')
+    @Messages = new Meteor.Collection(@name)
 
-  record: (message) ->
-    @Messages.insert({text: message})
+  add_message: (username, message) ->
+    @Messages.insert({'username': username, text: message})
 
-exports.Chatroom = Chatroom unless Meteor?
+  message_count: ->
+    @Messages.find({}).count()
+
+  all_messages: ->
+    @Messages.find({}).fetch()
+
+  latest_messages: (n) ->
+    count = @message_count()
+    if count < n
+      message_to_skip = 0
+    else
+      message_to_skip = count - n
+    @Messages.find({}, {skip: message_to_skip }).fetch()
