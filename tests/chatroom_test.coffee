@@ -1,23 +1,19 @@
-#assert = require('chai').assert
-# _ = require('underscore')
-# {Chatroom} = require '../lib/chatroom'
+describe 'Chatroom', ->
 
-it 'tests chai.assertions', ->
-  chai.assert.equal(3, 1 + 2)
+  before ->
+    @room = new Chatroom('gossip')
 
-it 'has underscore', ->
-  list = _.map([1,2,3], (x) -> x * 10)
-  chai.assert.deepEqual([10,20,30], list)
+  it 'works', ->
+    chai.assert.equal(3, 5-2)
 
-it 'can test objects', ->
-  msg = {'message' : 'hi', 'username': 'tyler'}
-  chai.assert.equal('tyler', msg.username)
-
-it 'can count messages', ->
-  messages = [
+  it 'can count messages', ->
+    messages = [
       {'message' : 'hi', 'username': 'tyler'},
       {'message' : 'hello', 'username': 'eric'},
       {'message' : 'yes', 'username': 'tyler'}
       ]
-  msg_count =  _.countBy(messages, (x) -> x.username)
-  chai.assert.deepEqual({'tyler' : 2, 'eric': 1}, msg_count)
+    msg_count =  _.countBy(messages, (x) -> x.username)
+    chai.assert.deepEqual({'tyler' : 2, 'eric': 1}, msg_count)
+
+  it 'has a name', ->
+    chai.assert.equal('gossip', @room.name)

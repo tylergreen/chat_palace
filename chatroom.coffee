@@ -1,7 +1,7 @@
 root = global ? window
 M = root.Meteor
 
-Messages = new M.Collection("messages")
+Messages = new M.Collection("messages_old")
 
 if M.is_client
 
