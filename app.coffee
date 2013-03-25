@@ -1,7 +1,7 @@
 root = global ? window
 M = root.Meteor
 
-Chatroom = new Chatroom('general')
+chatroom = new Chatroom('general')
 
 if M.is_client
 
@@ -21,12 +21,12 @@ if M.is_client
       .attr("height", (d) -> d * 10)
 
   root.Template.chat_console.message_count = ->
-    Chatroom.message_count()
+    chatroom.message_count()
 
   messages_to_show = 10
 
   root.Template.chat_console.message_list = ->
-    Chatroom.latest_messages(10)
+    chatroom.latest_messages(10)
 
   # this is a so called "event map"
   root.Template.chat_console.events = "click input#send_button": ->
@@ -34,4 +34,4 @@ if M.is_client
     message = $('#chatbox').val()
     $('#chatbox').val('')
     console.log "msg #{message}"
-    Chatroom.add_message(Meteor.user().username, message)
+    chatroom.add_message(Meteor.user().username, message)
