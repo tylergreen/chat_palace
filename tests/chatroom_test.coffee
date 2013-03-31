@@ -1,7 +1,7 @@
 describe 'Chatroom', ->
 
   before ->
-    @room = new Chatroom('gossip')
+    @room = new Chatroom 'gossip'
 
   it 'has a name', ->
     chai.assert.equal('gossip', @room.name)
