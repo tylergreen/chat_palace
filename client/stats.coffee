@@ -18,10 +18,10 @@ Template.stats.rendered = ->
     .attr("width", (d,i) -> d * 10) # bad coupling here x
     .attr("height", (d) -> 19)
 
-  chart.selectAll("p")
+  chart.selectAll("p") # probably a bad selector to use
     .data(message_count)
     .enter()
     .append("text")
     .attr("x", (d) -> (d.count * 10) + 5) # bad coupling here x
     .attr("y", (d,i) -> (i * 20) + 15) # bad coupling y
-    .text((d) -> d.name)
+    .text((d) -> "#{d.name} #{d.count}")
