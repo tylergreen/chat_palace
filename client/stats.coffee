@@ -3,6 +3,8 @@ Template.stats.rendered = ->
   #user_messages = _.filter(Messages.find({}), (msg) -> msg.username)
   #message_count = _.countBy(user_messages, (msg) -> msg.username)
   message_count = {'tyler': 10, 'eric': 4, 'jorge': 8, 'gomez' : 2}
+  message_count = ({name:k, count:v} for k,v of message_count)
+  message_count = _.sortBy(message_count, 'count').reverse()
   chart_height = 100
   #chart_width = 300
   #max = d3.max(message_count)
@@ -16,7 +18,7 @@ Template.stats.rendered = ->
     .attr("height", "90%")
 
   chart.selectAll("rect")
-    .data(_.values(message_count))
+    .data(i.count for i in message_count) # should be tested, no logic here
     .enter()
     .append("rect")
     .attr("x", 0 )
@@ -25,7 +27,7 @@ Template.stats.rendered = ->
     .attr("height", (d) -> 19)
 
   chart.selectAll("p")
-    .data({name:k, count:v} for k,v of message_count)
+    .data(message_count)
     .enter()
     .append("text")
     .attr("x", (d) -> (d.count * 10) + 5) # bad coupling here x
