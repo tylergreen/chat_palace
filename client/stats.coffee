@@ -19,16 +19,16 @@ Template.stats.rendered = ->
     .data(_.values(message_count))
     .enter()
     .append("rect")
-    .attr("x", 100 )
-    .attr("y", (d,i) -> i * 20)
-    .attr("width", (d,i) -> d * 10)
+    .attr("x", 0 )
+    .attr("y", (d,i) -> i * 20) # bad coupling here y
+    .attr("width", (d,i) -> d * 10) # bad coupling here x
     .attr("height", (d) -> 19)
 
   chart.selectAll("p")
-    .data(_.keys(message_count))
+    .data({name:k, count:v} for k,v of message_count)
     .enter()
     .append("text")
-    .attr("x", 0)
+    .attr("x", (d) -> (d.count * 10) + 5) # bad coupling here x
     #.attr("x", ((k,v),i) -> v * 10)
-    .attr("y", (d,i) -> (i * 20) + 20)
-    .text((d) -> d)
+    .attr("y", (d,i) -> (i * 20) + 15) # bad coupling y
+    .text((d) -> d.name)
