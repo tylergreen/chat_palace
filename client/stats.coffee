@@ -1,7 +1,5 @@
 Template.stats.rendered = ->
-  message_count = {'tyler': 10, 'eric': 4, 'jorge': 8, 'gomez' : 2}
-  message_count = ({name:k, count:v} for k,v of message_count)
-  message_count = _.sortBy(message_count, 'count').reverse()
+  message_count = chatroom.stats()
   chart_height = 100
 
   chart = d3.select("#barchart")

@@ -18,3 +18,8 @@ class Chatroom
     else
       message_to_skip = count - n
     @Messages.find({}, {skip: message_to_skip }).fetch()
+
+  stats: () ->
+    totals = _.countBy(@all_messages(), 'username')
+    totals = ({name:k, count:v} for k,v of totals)
+    _.sortBy(totals, 'count').reverse()
