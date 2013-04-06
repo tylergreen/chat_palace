@@ -2,10 +2,24 @@ Template.stats.rendered = ->
   message_count = chatroom.stats()
   chart_height = 100
 
-  chart = d3.select("#barchart")
-    .append("svg")
-    .attr("width", "90%")
-    .attr("height", "90%")
+  xchart = d3.select("#testarea").append("svg")
+      .attr("width", "100%")
+      .attr("height", "80%")
+      .append('g')
+      .attr("transform", "translate(200,40)")
+
+  xchart.append('rect')
+        .attr('x',0)
+        .attr('y', 0)
+        .attr('width', 200)
+        .attr('height', 100)
+        .attr('fill', d3.rgb('#0a0'))
+
+
+  # chart = d3.select("#barchart")
+  #   .append("svg")
+  #   .attr("width", "100%")
+  #   .attr("height", "50%")
 
   chart.selectAll("rect")
     .data(i.count for i in message_count) # should be tested, no logic here
