@@ -15,6 +15,12 @@ Template.stats.rendered = ->
         .attr('height', 100)
         .attr('fill', d3.rgb('#0a0'))
 
+  line = d3.svg.line()
+      .x((d) -> d[0])
+      .y((d) -> d[1])
+
+  xchart.append('path')
+    .attr('d', line([[0,0],[100,200], [70, 20]]))
 
   # chart = d3.select("#barchart")
   #   .append("svg")
