@@ -37,8 +37,8 @@ describe 'Chatroom', ->
     _.each(jorge_messages, (msg) -> test_room.add_message('jorge', msg))
     billy_messages = [ 'yes', 'no']
     _.each(billy_messages, (msg) -> test_room.add_message('billy', msg))
-    expected_stats = [{username: 'jorge', message_total: 4},
-        {username: 'billy', message_total: 2} ]
+    expected_stats = [{username: 'jorge', count: 4},
+        {username: 'billy', count: 2} ]
     chai.assert.deepEqual(expected_stats, test_room.stats())
 
   it 'has deep equals', ->

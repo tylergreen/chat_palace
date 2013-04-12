@@ -5,6 +5,10 @@ chatroom = new Chatroom('general')
 
 if M.is_client
 
+  Deps.autorun( () ->
+    chatroom.all_message_cursor()
+    .observeChanges({ added: () -> chatroom.draw_chart('#barchart') } ))
+
   root.Template.chat_console.message_count = ->
     chatroom.message_count()
 
